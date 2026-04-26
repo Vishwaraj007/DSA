@@ -1,0 +1,73 @@
+1) CODE : 
+  class Solution {
+  public:
+      vector<vector<int>> threeSum(vector<int>& nums) {
+          int n = nums.size();
+          vector<vector<int>> ans;
+          sort(nums.begin(),nums.end());
+          for(int x = 0; x< nums.size(); x++)
+          {
+              if(x>0 && nums[x] == nums[x-1])continue;
+              int j = n-1;
+              int i = x+1;
+              while(i<j)
+              {
+                  int sum = nums[x] + nums[i] + nums[j];
+                  if(sum == 0)
+                  {
+                      ans.push_back({nums[x],nums[i],nums[j]});
+                      i++;
+                      j--;
+                      while(i<j && nums[i] == nums[i-1])i++;
+                      while(i<j && nums[j] == nums[j+1])j--;
+                     
+                  }
+                  if(sum < 0)
+                  {
+                      i++;
+                  }
+                  if(sum > 0)
+                  {
+                      j--;
+                  }
+              }
+          }   
+          return ans;
+      }
+  };
+
+EXPLAINATION : 
+    🔹 Idea: Sorting + Two Pointers
+    1) Sort the array
+        This helps in using the two-pointer technique and avoiding duplicates.
+    2) Fix one element (i loop)
+        Loop through the array from i = 0 to n-3.
+    3) Use two pointers
+        For each i, set:
+        left = i + 1
+        right = n - 1
+    4) Find pairs
+        While left < right:
+        Calculate sum = nums[i] + nums[left] + nums[right]
+        If sum == 0 → store triplet
+        If sum < 0 → move left++ (need bigger value)
+        If sum > 0 → move right-- (need smaller value)
+    %)Skip duplicates
+      Skip duplicate values for:
+        i (to avoid repeating same triplet)
+        left and right after finding a valid triplet
+   
+    
+    🔹 Time Complexity
+    Sorting: O(n log n)
+    Two-pointer scan: O(n^2)
+    Overall: O(n²)
+
+
+
+
+
+
+
+
+  0
