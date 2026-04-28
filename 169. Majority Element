@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> num_map;
+        int max = 0;
+        for(int num : nums)
+        {
+            
+            num_map[num]++;
+        }
+        int temp = 0;
+        for(int num : nums)
+        {
+            cout<<num <<" : "<<num_map[num] << ", "<<endl;
+            cout<<"MAX = "<<max<<endl;
+           if(num_map[num] > num_map[max])
+           {
+                max = num;
+           }
+        }
+        return max;
+    }
+};
